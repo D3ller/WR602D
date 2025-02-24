@@ -32,6 +32,12 @@ jobs:
       - name: Test User Getter and Setter
         run: vendor/bin/phpunit src/Tests/Entity/UserTest.php
 
+      - name: Test Subscriptions Getter and Setter
+        run: vendor/bin/phpunit src/Tests/Entity/SubscriptionTest.php
+
+      - name: Test File Getter and Setter
+        run: vendor/bin/phpunit src/Tests/Entity/FileTest.php
+
       - name: Run PHP_CodeSniffer
         run: vendor/bin/phpcs --standard=PSR2 src/
 
