@@ -23,6 +23,12 @@ jobs:
       - name: Install Dependencies
         run: composer install --no-progress --no-suggest --prefer-dist
 
+      - name: Copy .env.test to .env
+        run: cp .env.test .env
+
+      - name: Clear Cache
+        run: php bin/console cache:clear --env=test
+
       - name: Run PHP_CodeSniffer
         run: vendor/bin/phpcs --standard=PSR2 src/
 
