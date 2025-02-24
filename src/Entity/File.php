@@ -19,6 +19,9 @@ class File
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
 
+    #[ORM\ManyToOne(inversedBy: 'files')]
+    private ?User $account = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +54,18 @@ class File
     public function setCreatedAt(\DateTimeImmutable $created_at): static
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    public function getAccount(): ?User
+    {
+        return $this->account;
+    }
+
+    public function setAccount(?User $account): static
+    {
+        $this->account = $account;
 
         return $this;
     }
