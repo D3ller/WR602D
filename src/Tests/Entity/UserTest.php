@@ -14,18 +14,16 @@ class UserTest extends TestCase
 
         // Définition de données de test
         $email = 'test@test.com';
-        $username = 'test';
         $name = ['test', 'test'];
-        $role = 'ROLE_USER';
+        $role = ['ROLE_USER'];
 
 
         // Utilisation des setters
         $user->setEmail($email);
-        $user->setUsername($username);
         $user->setLastname($name[0]);
         $user->setFirstname($name[1]);
         $user->setPassword('password');
-        $user->setRole($role);
+        $user->setRoles($role);
 
         // Vérification des getters
         $this->assertEquals($email, $user->getEmail());
