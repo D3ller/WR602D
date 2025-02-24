@@ -1,0 +1,33 @@
+name: Verify test when push on develop
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  verify:
+    name: Verify Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer, php-codesniffer, phpstan, phpmd
+
+      - name: Install Dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
+
+      - name: Run PHP_CodeSniffer
+        run: vendor/bin/phpcs --standard=PSR2 src/
+
+      - name: Run PHPStan
+        run: vendor/bin/phpstan analyze src/
+
+      - name: Run PHPMD
+        run: vendor/bin/phpmd src/ text cleancode,codesize,controversial,design
