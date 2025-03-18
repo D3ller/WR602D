@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegisterController!{% endblock %}
+
+{% block body %}
+
+    <div class="flex justify-center items-center flex-col gap-4">
+        <h1 class="text-3xl font-bold">HTML vers PDF</h1>
+
+        <p class="text-lg text-zinc-500">Transformez en quelques seconde votre fichier HTML en fichier PDF</p>
+
+        {{ form_start(form, {
+            'attr': {'class': 'w-full'}
+        }) }}
+
+        {{ form_row(form.html, {
+            'row_attr': {'class': 'flex flex-col gap-3.5'},
+            'attr': {'class': 'w-full text-sm h-66 p-2 border border-gray-300 rounded-md placeholder:text-zinc-300 duration-300 ring-0 ring-red-500/50 focus:ring-4 focus:ring-red-500/50 focus:outline-0'}
+        }) }}
+
+        <div class="flex justify-center items-center">
+            <button class="my-5"
+                    type="submit">Convertir HTML en PDF
+            </button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
