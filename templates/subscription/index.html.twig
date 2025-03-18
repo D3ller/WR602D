@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SubscriptionController!{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger mb-10">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <div class="max-w-6xl grid grid-cols-3 mx-auto gap-3.5">
+    {% for sub in subscriptions %}
+        <div class="col-span-1 bg-black text-white p-3.5 rounded-md">
+            <h2 class="font-semibold text-3xl">{{ sub.name }}</h2>
+
+            <h3 class="text-xl font-medium mt-2">{{ sub.price }}$ / mois</h3>
+            <p class="mt-4 text-zinc-200">
+                {{ sub.description }}
+            </p>
+
+            <a href="{{ path('app_subscription_subscribe', { id: sub.id }) }}" class="block !w-full text-center mt-10 bg-blue-500 text-white py-2 rounded-md">
+                Prendre l'abonnement
+            </a>
+        </div>
+
+
+    {% endfor %}
+
+    </div>
+{% endblock %}
