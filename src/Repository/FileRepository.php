@@ -16,6 +16,19 @@ class FileRepository extends ServiceEntityRepository
         parent::__construct($registry, File::class);
     }
 
+    public function countUserFilesThisMonth(int $userId): int
+    {
+        $qb = $this->createQueryBuilder('f')
+            ->select('COUNT(f.id)')
+            ->where('f.account = :user')
+            ->andWhere('f.createdAt >= :startOfMonth')
+            ->setParameter('user', $userId)
+            ->setParameter('startOfMonth', new \DateTime('first day of this month midnight'))
+            ->getQuery();
+
+        return (int) $qb->getSingleScalarResult();
+    }
+
     //    /**
     //     * @return File[] Returns an array of File objects
     //     */
