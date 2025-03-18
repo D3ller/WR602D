@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Generate PDF{% endblock %}
+
+{% block body %}
+    <div class="flex justify-center items-center flex-col gap-4">
+        <h1 class="text-3xl font-bold">Génération un PDF via un URL</h1>
+
+        <p class="text-lg text-zinc-500">Transformez en quelques seconde votre url en un fichier PDF</p>
+
+
+        {{ form_start(form, {
+            'attr': {'class': 'w-full'}
+        }) }}
+
+        {{ form_row(form.url, {
+            'row_attr': {'class': 'flex flex-col gap-3.5 w-full'},
+        }) }}
+
+        <div class="flex justify-center items-center">
+            <button class="my-5"
+                    type="submit">Générer le PDF
+            </button>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
