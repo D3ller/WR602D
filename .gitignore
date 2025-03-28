@@ -9,6 +9,8 @@
 /public/bundles/
 /var/
 /vendor/
+/assets/node_modules
+.idea
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
@@ -25,3 +27,4 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+/public/pdf/*

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1 class="text-3xl font-bold text-center">S'inscrire</h1>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm, {
+        'attr': {'class': 'max-w-lg mx-auto flex flex-col gap-2 mt-3.5'},
+    }) }}
+    {{ form_row(registrationForm.email, {
+        label: 'Adresse e-mail',
+        'row_attr': {'class': 'flex flex-col gap-1.5'}
+    }) }}
+    {{ form_row(registrationForm.firstName, {
+        label: 'Prénom',
+        'row_attr': {'class': 'flex flex-col gap-1.5'}
+    }) }}
+    {{ form_row(registrationForm.lastName, {
+        label: 'Nom de famille',
+        'row_attr': {'class': 'flex flex-col gap-1.5'}
+    }) }}
+
+    {{ form_row(registrationForm.plainPassword, {
+        label: 'Mot de passe',
+        'row_attr': {'class': 'flex flex-col gap-1.5'}
+    }) }}
+    {{ form_row(registrationForm.agreeTerms, {
+        label: 'Conditions de services',
+        'row_attr': {'class': 'flex items-center gap-1.5'}
+    }) }}
+
+    <button type="submit" class="text-sm">Se connecter</button>
+    {{ form_end(registrationForm) }}
+{% endblock %}

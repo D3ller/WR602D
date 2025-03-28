@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DashboardController!{% endblock %}
+
+{% block body %}
+<div class="max-w-lg mx-auto">
+    <h1 class="text-4xl font-bold">Dashboard</h1>
+    {% if app.user %}
+        <div class="mt-5">
+            <h2 class="text-2xl font-semibold">Informations générales</h2>
+            <ul class="text-lg flex flex-col gap-0.5 mt-1.5">
+                <li>{{ app.user.firstname }} {{ app.user.lastname }}</li>
+                <li>{{ app.user.email }}</li>
+                {% if user.subscription %}
+                    <li>Abonnement : {{ user.subscription.name }}</li>
+                    <li>Nombre de pdf max: {{ user.subscription.maxPdf }}</li>
+                    <li>Utilisé ce mois-ci : {{ pdfCount }}</li>
+                {% else %}
+                    <li>Pas d'abonnement</li>
+                {% endif %}
+            </ul>
+            <div class="mt-3.5">
+                <a href="/dashboard/history" class="text-blue-500 underline">Votre historique</a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

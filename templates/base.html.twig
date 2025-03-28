@@ -1,9 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+        <style type="text/tailwindcss">
+            @theme {
+            }
+
+            #form div {
+                @apply flex flex-col gap-4;
+            }
+
+            input[type="text"], input[type="password"], input[type="email"] {
+                @apply w-full text-sm p-3 border border-gray-300 rounded-md placeholder:text-zinc-300 duration-300 ring-0 ring-red-500/50 focus:ring-4 focus:ring-red-500/50 focus:outline-0;
+            }
+
+            button, a.button {
+                @apply cursor-pointer bg-red-500 text-white cursor-pointer font-semibold w-fit py-3.5 px-4 rounded-md;
+            }
+
+            .outline {
+                @apply !bg-transparent border-1 border-red-500 !text-red-500 hover:!bg-red-500/10 duration-300;
+            }
+
+            label {
+                @apply text-sm
+            }
+
+            body {
+                background-image: radial-gradient(rgba(199, 199, 199, 0.2) 1px, transparent 0px);
+                background-size: 12px 12px;
+            }
+
+            .alert {
+                @apply p-3.5 ring-1;
+            }
+
+            .alert-danger {
+                @apply ring-red-500 text-red-500 bg-red-200 text-center rounded-md;
+            }
+        </style>
         {% block stylesheets %}
         {% endblock %}
 
@@ -11,7 +54,38 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
-    <body>
+    <body class="bg-white p-4">
+
+    <header>
+        <div class="max-w-3xl w-full mx-auto flex justify-between items-center">
+            <a href="/">PDFGenerate</a>
+
+            {% if app.user %}
+                <div class="flex gap-4 items-center">
+                    <a href="/subscription">Abonnements</a>
+                    <a href="/dashboard"
+                       class="bg-black text-white text-sm cursor-pointer font-medium w-fit py-3.5 px-5 rounded-md">
+                        Dashboard
+                    </a>
+                </div>
+            {% else %}
+                <div class="flex gap-4 items-center">
+                    <a href="/subscription">Abonnements</a>
+                    <a href="/login" class="bg-black text-white text-sm cursor-pointer font-medium w-fit py-3.5 px-5 rounded-md">Se
+                        connecter
+                    </a>
+                    <a href="/register" class="ring-1 ring-zinc-200 text-sm cursor-pointer font-medium w-fit py-3.5 px-5 rounded-md">
+                        S'inscrire
+                    </a>
+                </div>
+            {% endif %}
+
+
+        </div>
+    </header>
+
+    <main class="mt-20 max-w-4xl mx-auto">
         {% block body %}{% endblock %}
+    </main>
     </body>
 </html>
