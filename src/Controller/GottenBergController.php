@@ -65,14 +65,18 @@ final class GottenBergController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $url = $form->getData()['url'];
 
-            return $this->redirectToRoute('app_gotten_berg_url', [
+            return $this->redirectToRoute(
+                'app_gotten_berg_url', [
                 'url' => $url
-            ]);
+                ]
+            );
         }
 
-        return $this->render('gotten_berg/index.html.twig', [
+        return $this->render(
+            'gotten_berg/index.html.twig', [
             'form' => $form->createView(),
-        ]);
+            ]
+        );
     }
 
     #[Route('/generate/html', name: 'app_gotten_berg_html')]
@@ -80,7 +84,8 @@ final class GottenBergController extends AbstractController
     {
 
         $form = $this->createFormBuilder()
-            ->add('html', TextareaType::class, ['required' => true, 'label' => false, 'attr' => ['class' => 'form-control', 'placeholder' => '<!DOCTYPE html>
+            ->add(
+                'html', TextareaType::class, ['required' => true, 'label' => false, 'attr' => ['class' => 'form-control', 'placeholder' => '<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -89,7 +94,8 @@ final class GottenBergController extends AbstractController
   <body>
     <h1>Hello world!</h1>
   </body>
-</html>']])
+</html>']]
+            )
             ->getForm();
 
         $form->handleRequest($request);
@@ -99,8 +105,10 @@ final class GottenBergController extends AbstractController
             return $gotenberg->htmlToPDF($html);
         }
 
-        return $this->render('gotten_berg/html.html.twig', [
+        return $this->render(
+            'gotten_berg/html.html.twig', [
             'form' => $form->createView(),
-        ]);
+            ]
+        );
     }
 }

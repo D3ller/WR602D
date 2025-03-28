@@ -15,10 +15,12 @@ final class SubscriptionController extends AbstractController
     public function index(SubscriptionRepository $subscriptionRepository): Response
     {
 
-        return $this->render('subscription/index.html.twig', [
+        return $this->render(
+            'subscription/index.html.twig', [
             'controller_name' => 'SubscriptionController',
             'subscriptions' => $subscriptionRepository->findAll(),
-        ]);
+            ]
+        );
     }
 
     #[Route('/subscription/{id}/subscribe', name: 'app_subscription_subscribe')]

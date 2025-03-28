@@ -17,18 +17,22 @@ final class DashboardController extends AbstractController
         $user = $this->getUser();
         $pdfCount = $fileRepository->countUserFilesThisMonth($user->getId());
 
-        return $this->render('dashboard/index.html.twig', [
+        return $this->render(
+            'dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
             'user' => $user,
             'pdfCount' => $pdfCount,
-        ]);
+            ]
+        );
     }
 
     #[Route('/history', name: 'app_dashboard_historique')]
     public function historique(): Response
     {
-        return $this->render('dashboard/history.html.twig', [
+        return $this->render(
+            'dashboard/history.html.twig', [
             'controller_name' => 'DashboardController',
-        ]);
+            ]
+        );
     }
 }
